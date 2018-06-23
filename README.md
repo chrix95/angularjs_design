@@ -1,2 +1,2 @@
 # angularjs_design
-A tutorial on dynamic ID Card using Angular JS
+A tutorial on creating dynamic ID Card using Angular JS
