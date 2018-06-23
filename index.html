@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Bussiness Design</title>
+    <link rel="shortcut icon" href="assets/img/patterns/dimimpMask.png">
+    <!-- Bootstrap itself -->
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+  	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  	<!-- Custom styles -->
+  	<link rel="stylesheet" href="assets/css/main.css">
+    <!-- Load js libs only when the page is loaded. -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Custom template scripts -->
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/script.js"></script>
+
+  </head>
+  <body ng-controller="MainCtrl">
+
+    <section>
+      <div class="container">
+        <h1 class="text-center">Sample Preview and Canvas</h3>
+        <div class="col-md-6">
+          <img src="assets/img/patterns/sample.png" class="img img-responsive center-block" alt="Sample ID Card">
+        </div>
+        <div class="col-md-6">
+          <canvas id="myCanvas" width="555.753" height="344.471" style="border: 1px solid #000"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section id="upload">
+      <div class="container">
+        <h1 class="text-center">Upload Image Section</h1>
+        <div class="col-md-6 col-md-offset-3">
+          <div id='clock' style="margin: auto"></div>
+          <input type='file' id='getval' name="background-image" onchange="readURL(event)" style="margin: auto"/><br/>
+          <button type="button" id="imageUploadBtn" class="btn btn-success btn-md" ng-click="draw()" style="margin: auto">Upload Image</button>
+          <img ng-src="" id="imageP" style="display:none">
+        </div>
+      </div>
+    </section>
+
+    <section id="details">
+      <div class="container" style="margin-top: 50px">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <h1>Enter Required Details</h1>
+            <form ng-submit="submitWriteUp(name, position, phone, email, website)">
+              <div class="form-group">
+                <label>Name:</label>
+                <input type="text" ng-model="name" value="" required placeholder="Name" class="form-control" maxlength="24">
+              </div>
+              <div class="form-group">
+                <label>Position:</label>
+                <input type="text" ng-model="position" value="" placeholder="Position" required class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Phone:</label>
+                <input type="text" ng-model="phone" value="" placeholder="Phone number" required class="form-control" maxlength="24">
+              </div>
+              <div class="form-group">
+                <label>Email:</label>
+                <input type="email" ng-model="email" value="" required placeholder="Email" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Website:</label>
+                <input type="text" ng-model="website" value="" required placeholder="Website" class="form-control" maxlength="27">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-success btn-md uploadBtn">Submit Details</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="final">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div id="finalPreview"></div>
+            <a id="download" href="" download="steemjet.png" target="_blank" >
+              <input type="button" value="Download" class="btn btn-success btn-md uploadBtn"/>
+            </a>
+            <a href="#">
+              <button type="button" ng-click="restart()" id="restart" class="btn btn-success btn-md uploadBtn">Restart</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </body>
+  <script type="text/javascript">
+
+    $("#details").hide();
+    $("#final").hide();
+
+    function readURL(event){
+       var getImagePath = URL.createObjectURL(event.target.files[0]);
+       $('#clock').css('background-image', 'url(' + getImagePath + ')');
+       $("#imageP").attr('src', getImagePath);
+       $('#imageUploadBtn').css("display", "block");
+    }
+
+  </script>
+</html>
